@@ -241,7 +241,7 @@ async function startBot(oldSock = null) {
         } catch (e) {}
     }
 
-    const { state, saveCreds } = await useMultiFileAuthState('PabloRawr');
+    const { state, saveCreds } = await useMultiFileAuthState('./PabloRawr');
     const pablo = makeWASocket({
         auth: state,
         logger: P({ level: 'silent' }),
@@ -1677,6 +1677,7 @@ if (!isOwner) return reply("Khusus Owner")
 if (args.length === 0) return reply(`Kirim perintah:\n${prefix+command} Text`)
 const text = args.join(' ');
 await groupLabel(m.chat, text)
+
 await reply("Sukses ✅")
 }
 break;
