@@ -1,7 +1,7 @@
-process.chdir(process.cwd())
+const path = require('path')
 
 async function startbot() {
-  require('./index')
+  require("./core/9.js")
 }
 
 module.exports = { startbot }
