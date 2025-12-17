@@ -1,17 +1,18 @@
 const path = require('path')
 
-function pfile(relPath) {
-  const filePath = path.isAbsolute(relPath)
-    ? relPath
-    : path.resolve(process.cwd(), relPath)
+function normalizeRelPath(relPath) {
+  if (path.isAbsolute(relPath)) return relPath 
+  if (relPath.startsWith('./') || relPath.startsWith('../')) return relPath
+  return './' + relPath
+}
 
-  return require(filePath)
+function pfile(relPath) {
+  const finalPath = path.resolve(process.cwd(), normalizeRelPath(relPath))
+  return require(finalPath)
 }
 
 function ppath(relPath) {
-  return path.isAbsolute(relPath)
-    ? relPath
-    : path.resolve(process.cwd(), relPath)
+  return path.resolve(process.cwd(), normalizeRelPath(relPath))
 }
 
 module.exports = { pfile, ppath }
