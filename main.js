@@ -1,7 +1,7 @@
 const path = require('path')
 
 async function startbot() {
-  require("./9.js")
+  require("./core/9.js")
 }
 
 module.exports = { startbot }
